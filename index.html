@@ -19,7 +19,7 @@
     <link rel="alternative" href="/atom.xml" title="一凌的小窝~" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/mm.png">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -151,6 +151,96 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-云计算作业2-基本云安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/19/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A2-%E5%9F%BA%E6%9C%AC%E4%BA%91%E5%AE%89%E5%85%A8/">云计算作业2-基本云安全</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/19/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A2-%E5%9F%BA%E6%9C%AC%E4%BA%91%E5%AE%89%E5%85%A8/" class="archive-article-date">
+  	<time datetime="2022-03-19T02:31:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2-1-列举威胁作用者有哪些，并简要说明"><a href="#2-1-列举威胁作用者有哪些，并简要说明" class="headerlink" title="2-1 列举威胁作用者有哪些，并简要说明"></a>2-1 列举威胁作用者有哪些，并简要说明</h2><p>​        威胁作用者是引发威胁的实体，因为它能够实施攻击。云安全威胁可能来自内部或外部，可能来自于人也可能来自于软件程序。相对于漏洞、威胁和风险以及安全策略机制建立起来的保护措施而言，威胁作用者所承担的角色如下图所示：</p>
+<p><img src="/../img/20200924222622732.png"></p>
+<h4 id="1-匿名攻击者-anonymous-attacker"><a href="#1-匿名攻击者-anonymous-attacker" class="headerlink" title="1. 匿名攻击者 (anonymous attacker)"></a>1. 匿名攻击者 (anonymous attacker)</h4><p>​        匿名攻击者是云中没有权限、不被信任的云服务用户。它通常是一个外部软件程序，通过公网发动网络攻击。当匿名攻击者对安全策略和防护所知有限时，会抑制他们形成有效攻击的能力。匿名攻击者往往诉诸<strong>绕过用户账号</strong>或<strong>窃取用户证书</strong>的手段，同时使用能<strong>确保匿名性</strong>或<strong>需要大量资源才能被检举</strong>的方法。</p>
+<h4 id="2-恶意服务实施者-malicious-service-agent"><a href="#2-恶意服务实施者-malicious-service-agent" class="headerlink" title="2. 恶意服务实施者 (malicious service agent)"></a>2. 恶意服务实施者 (malicious service agent)</h4><p>​        能截取并转发云内的网络流量。它通常是带有<strong>被损害的</strong>或<strong>恶意逻辑</strong>的服务代理（或伪装成服务代理的程序）。也可能是能够<strong>远程截取并破坏消息内容的外部程序</strong>。</p>
+<h4 id="3-授信的攻击者-trusted-attacker"><a href="#3-授信的攻击者-trusted-attacker" class="headerlink" title="3. 授信的攻击者 (trusted attacker)"></a>3. 授信的攻击者 (trusted attacker)</h4><p>​        又称恶意租户 (malicious tenant)，与同一云环境中的云用户共享IT资源，试图利用合法的证书来把云提供者、以及与他们共享IT资源的云租户作为攻击目标。通过<strong>滥用合法证书、挪用敏感和保密信息</strong>，在云的信任边界内部发动攻击。恶意租户能够使用基于云的IT资源做很多非法之用，包括非法入侵认证薄弱的进程、破解加密、往电子邮件账号发送垃圾邮件、发起<strong>拒绝服务</strong>等常见的攻击等。</p>
+<h4 id="4-恶意的内部人员-malicious-insider"><a href="#4-恶意的内部人员-malicious-insider" class="headerlink" title="4. 恶意的内部人员 (malicious insider)"></a>4. 恶意的内部人员 (malicious insider)</h4><p>​        是人为的威胁作用者，他们的行为代表云提供者，或者与之有关。他们通常是现任或前任雇员，或是能够访问云提供者资源范围的第三方。这种类型的威胁作用者会带来极大的破坏可能性，因为恶意的内部人员可能拥有访问云用户IT资源的管理特权。</p>
+<h2 id="2-2-列举云安全威胁有哪些，并简要说明"><a href="#2-2-列举云安全威胁有哪些，并简要说明" class="headerlink" title="2-2 列举云安全威胁有哪些，并简要说明"></a>2-2 列举云安全威胁有哪些，并简要说明</h2><h4 id="1-流量窃听-traffic-eavesdropping"><a href="#1-流量窃听-traffic-eavesdropping" class="headerlink" title="1. 流量窃听 (traffic eavesdropping)"></a>1. 流量窃听 (traffic eavesdropping)</h4><p>​        指当数据在传输到云中或在云内部传输时（通常是从云用户到云提供者），被恶意的服务作用者<strong>被动地截获</strong>，用于非法的信息收集，破坏<strong>保密性</strong>。由于这种攻击被动的性质，其更容易长时间进行而不被发现。</p>
+<h4 id="2-恶意媒介-malicious-intermediate"><a href="#2-恶意媒介-malicious-intermediate" class="headerlink" title="2. 恶意媒介 (malicious intermediate)"></a>2. 恶意媒介 (malicious intermediate)</h4><p>​        是指消息被恶意服务作用者截获并篡改，因此可能会破坏消息的<strong>保密性</strong>和<strong>完整性</strong>。它还有可能在把消息转发到目的地之前插入有害数据。</p>
+<h4 id="3-拒绝服务-DoS"><a href="#3-拒绝服务-DoS" class="headerlink" title="3. 拒绝服务 (DoS)"></a>3. 拒绝服务 (DoS)</h4><p>​        攻击的目标是使IT资源过载至无法正确运行，发起形式包括：</p>
+<ul>
+<li>云服务上的负载由于<strong>伪造的消息</strong>或<strong>重复的通信请求</strong>不正常的增加</li>
+<li>网络流量过载，降低了响应性，性能下降</li>
+<li>发出多个云服务请求，每个请求都设计成消耗过量的内存和处理资源</li>
+</ul>
+<h4 id="4-授权不足"><a href="#4-授权不足" class="headerlink" title="4. 授权不足"></a>4. 授权不足</h4><p>​        是指错误的授予了攻击者访问权限，或是授权太宽泛，导致攻击者能够访问本应该受到保护的IT资源。这种攻击的一种变种称为<strong>弱认证</strong>(week authentication)，如果用弱密码或共享账户来保护IT资源，就可能导致这种攻击。</p>
+<h4 id="5-虚拟化攻击-Virtualization-attack"><a href="#5-虚拟化攻击-Virtualization-attack" class="headerlink" title="5. 虚拟化攻击 (Virtualization attack)"></a>5. 虚拟化攻击 (Virtualization attack)</h4><p>​        利用虚拟化平台的漏洞来危害虚拟化平台的保密性、完整性和可用性。</p>
+<h4 id="6-信任边界重叠"><a href="#6-信任边界重叠" class="headerlink" title="6. 信任边界重叠"></a>6. 信任边界重叠</h4><p>​        如果云中的物理IT资源是由不同的云服务共享的，那么这些云服务用户的信任边界是重叠的。恶意的云服务用户可以把目标设定为共享的IT资源，意图损害其他共享同样信任边界的云服务或IT资源。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">云计算</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/19/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A2-%E5%9F%BA%E6%9C%AC%E4%BA%91%E5%AE%89%E5%85%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-心路历程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -314,81 +404,6 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/07/hello-world/" class="archive-article-date">
-  	<time datetime="2022-03-07T07:30:47.144Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/07/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -401,6 +416,13 @@
     	<div class="footer-left">
     		&copy; 2022 thmyl
     	</div>
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+			本站总访问量<span id="busuanzi_value_site_pv"></span>次 | 
+		</span>
+		<span id="busuanzi_container_site_uv">
+			本站访客数<span id="busuanzi_value_site_uv"></span>人次
+		</span>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
@@ -538,7 +560,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://www.cnblogs.com/thmyl/p/8072335.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凌儿</a>
+              <a href="https://www.cnblogs.com/thmyl/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凌儿</a>
             </li>
           
             <li class="search-li">

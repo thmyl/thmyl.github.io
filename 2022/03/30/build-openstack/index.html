@@ -6,20 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>云计算作业1-云使能技术 | 一凌的小窝~</title>
+  <title>记录安装openstack的过程 | 一凌的小窝~</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1-1 云使能技术包括哪些技术组件？用一句话简要说明其关键特征。 Internet服务提供者：云用户和云提供者通常利用Internet进行通信，Internet以无中心的供给和管理模型为基础，不受任何集中式实体的控制。">
+  <meta name="description" content="使用到的资料安装openstack 安装google浏览器 安装google浏览器的桌面快捷方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云计算作业1-云使能技术">
-<meta property="og:url" content="http://example.com/2022/03/11/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A1-%E4%BA%91%E4%BD%BF%E8%83%BD%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:title" content="记录安装openstack的过程">
+<meta property="og:url" content="http://example.com/2022/03/30/build-openstack/index.html">
 <meta property="og:site_name" content="一凌的小窝~">
-<meta property="og:description" content="1-1 云使能技术包括哪些技术组件？用一句话简要说明其关键特征。 Internet服务提供者：云用户和云提供者通常利用Internet进行通信，Internet以无中心的供给和管理模型为基础，不受任何集中式实体的控制。">
+<meta property="og:description" content="使用到的资料安装openstack 安装google浏览器 安装google浏览器的桌面快捷方式">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-11T11:13:43.000Z">
-<meta property="article:modified_time" content="2022-03-19T08:20:53.538Z">
+<meta property="og:image" content="http://example.com/img/openstack/image-20220330165608182.png">
+<meta property="og:image" content="http://example.com/img/openstack/image-20220330165630690.png">
+<meta property="og:image" content="http://example.com/img/openstack/QQ20220330173108.png">
+<meta property="og:image" content="http://example.com/img/openstack/image-20220330170235770.png">
+<meta property="og:image" content="http://example.com/img/openstack/7dKFs3VXQsP3.png">
+<meta property="og:image" content="http://example.com/img/openstack/QQ20220330172116.png">
+<meta property="og:image" content="http://example.com/img/openstack/7dKFs3VXQsP3.png">
+<meta property="og:image" content="http://example.com/img/openstack/image-20220330172715014.png">
+<meta property="og:image" content="http://example.com/img/openstack/925pK5Ubxsox.png">
+<meta property="og:image" content="http://example.com/img/openstack/FskCFnnzpian.png">
+<meta property="article:published_time" content="2022-03-30T08:44:40.000Z">
+<meta property="article:modified_time" content="2022-03-30T09:49:13.709Z">
 <meta property="article:author" content="thmyl">
-<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="环境部署">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/openstack/image-20220330165608182.png">
   
     <link rel="alternative" href="/atom.xml" title="一凌的小窝~" type="application/atom+xml">
   
@@ -155,45 +166,137 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-云计算作业1-云使能技术" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-build-openstack" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      云计算作业1-云使能技术
+      记录安装openstack的过程
     </h1>
   
 
         
-        <a href="/2022/03/11/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A1-%E4%BA%91%E4%BD%BF%E8%83%BD%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2022-03-11T11:13:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
+        <a href="/2022/03/30/build-openstack/" class="archive-article-date">
+  	<time datetime="2022-03-30T08:44:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-1-云使能技术包括哪些技术组件？用一句话简要说明其关键特征。"><a href="#1-1-云使能技术包括哪些技术组件？用一句话简要说明其关键特征。" class="headerlink" title="1-1 云使能技术包括哪些技术组件？用一句话简要说明其关键特征。"></a>1-1 云使能技术包括哪些技术组件？用一句话简要说明其关键特征。</h2><ol>
-<li><strong>Internet服务提供者</strong>：云用户和云提供者通常利用Internet进行通信，Internet以无中心的供给和管理模型为基础，不受任何集中式实体的控制。</li>
-</ol>
+        <h2 id="使用到的资料"><a href="#使用到的资料" class="headerlink" title="使用到的资料"></a>使用到的资料</h2><p><a target="_blank" rel="noopener" href="http://www.fishyoung.com/post-231.html">安装openstack</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.myfreax.com/how-to-install-google-chrome-web-browser-on-centos-7/">安装google浏览器</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36556893/article/details/112606626?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-1-112606626.pc_agg_new_rank&utm_term=centos%E5%AE%89%E8%A3%85chrome+%E5%9C%A8%E6%A1%8C%E9%9D%A2%E5%88%9B%E5%BB%BA%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F&spm=1000.2123.3001.4430">安装google浏览器的桌面快捷方式</a></p>
 <span id="more"></span>
 
-<ol>
-<li><strong>数据中心技术</strong>：数据中心是一种特殊的IT基础设施，用于集中放置IT资源：服务器、数据库、网络、通信设备、软件系统。</li>
-<li><strong>虚拟化技术</strong>：虚拟化是将物理IT资源转换为虚拟IT资源的过程，虚拟化提供了硬件无关性、服务器整合、资源复制、对资源池更强的支持和灵活的可扩展性。</li>
-<li><strong>Web技术</strong>：Web技术经常被用于云服务的实现，并在前端用于远程管理云IT资源，Web架构的基本技术包括URL、HTTP、HTML和XML。</li>
-<li><strong>多租户技术</strong>：使多个用户在逻辑上同时访问同一个应用，每个用户对其使用、管理和定制的应用程序都有自己的视图，是该软件的一个专有实例同时每个租户都意识不到还有其他租户在使用该应用。</li>
-<li><strong>服务技术</strong>：基于Web的服务（如Web服务和REST服务）依靠非专有通信和技术接口定义来建立基于Web技术的标准通信框架；服务代理提供事件驱动运行时处理，适用于云中大量的功能，许多代理都自动部署在操作系统和基于云的产品中；服务中间件（如ESB和业务流程平台）可以在云上部署。</li>
-</ol>
-<h2 id="1-2-列举至少3种虚拟化软件，并用一句话概括其特点。"><a href="#1-2-列举至少3种虚拟化软件，并用一句话概括其特点。" class="headerlink" title="1-2 列举至少3种虚拟化软件，并用一句话概括其特点。"></a>1-2 列举至少3种虚拟化软件，并用一句话概括其特点。</h2><ol>
-<li><strong>ESXi</strong>：可以以镜像的方式直接安装在Windows或Linux上，支持多种虚拟化如Windows、Linux、Solaris、MacOS，特点是占用空间小，支持的系统多。</li>
-<li><strong>KVM</strong>：开源的基于x86 Linux的完整虚拟化方案，它由一个可加载的内核模块kvm.ko组成，这个模块提供虚拟化核心架构和处理器规范模块，可以虚拟每个虚拟机的私有硬件如网卡、磁盘等，由于KVM是基于Linux内核实现的，所以它对Linux的整合度很高，抽象来说它就是Linux内核的一部分。</li>
-<li><strong>Hyper-V</strong>：微软开发的，专为Windows定制，也支持Linux，但性能缺失严重。</li>
-<li><strong>Xen</strong>：由剑桥大学开发，设计初衷是一台主机能运行上百台虚拟机，引入了域的概念，虚拟机通过不同的域来分割，支持两种模式的虚拟化：半虚拟化和完全虚拟化，与KVM不同的是：当硬件不具备虚拟化能力的时候，Xen可以采用半虚拟化的方式运行虚拟机。</li>
-<li><strong>Oracle VM VirtualBox</strong>：目前由甲骨文公司进行开发，可虚拟的系统包括Windows（所有版本）、MacOS X、Linux、OpenBSD、Solaris、IBM OS2甚至Android等系统，特点是开源且支持的系统种类繁多。</li>
-</ol>
+<h2 id="安装CentOS虚拟机"><a href="#安装CentOS虚拟机" class="headerlink" title="安装CentOS虚拟机"></a>安装CentOS虚拟机</h2><p>下载CentOS光盘镜像文件</p>
+<p><a target="_blank" rel="noopener" href="http://isoredirect.centos.org/centos/7/isos/x86_64/">http://isoredirect.centos.org/centos/7/isos/x86_64/</a></p>
+<p>打开后，选择</p>
+<p><img src="/../img/openstack/image-20220330165608182.png" alt="image-20220330165608182"></p>
+<p>然后选择</p>
+<p><img src="/../img/openstack/image-20220330165630690.png" alt="image-20220330165630690"></p>
+<p>下载得到这样一个文件：</p>
+<p><img src="/../img/openstack/QQ20220330173108.png"></p>
+<p>下载完成后，安装到你常用的虚拟机里面，比如我用的是VMware。</p>
+<p>安装虚拟机时，我用的“典型”配置，不需要太多操作，很快就安装好了（或者可以百度一下如何安装CentOS虚拟机）。</p>
+<p>安装好后，将虚拟机的内存和外存都搞大一点，例如我的：</p>
+<p><img src="/../img/openstack/image-20220330170235770.png" alt="image-20220330170235770"></p>
+<p>然后就可以打开虚拟机，正式开始安装openstack了。</p>
+<h2 id="安装openstack"><a href="#安装openstack" class="headerlink" title="安装openstack"></a>安装openstack</h2><p>首先提醒大家一件事，在openstack之前，不要着急装浏览器，不要着急装数据库，你只需要保证虚拟机是干净的，能联网的，后续的麻烦会减少很多（可以用ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 来测试是否能联网）。另外，下面的一些操作是需要用到root权限的，有需要的时候自行su root，切换用户即可。</p>
+<ul>
+<li>更新yum源</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum update</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setenforce <span class="number">0</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="keyword">stop</span> firewalld</span><br><span class="line"></span><br><span class="line">systemctl <span class="keyword">disable</span> firewalld</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新device-mapper  &#x2F;&#x2F;如果是最新的就不用更新了</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum update device-mapper</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装rdo</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y http:<span class="regexp">//</span>rdo.fedorapeople.org/rdo-release.rpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装packstack</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y openstack-packstack</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装openstack （这里会需要比较长的时间，一定要等它安装结束。）</li>
+</ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">packstack <span class="comment">--allinone</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>出现如下界面就说明安装完成了，之后就可以使用红框中圈出的地址来访问OpenStack了。</li>
+</ul>
+<p><img src="/../img/openstack/7dKFs3VXQsP3.png"></p>
+<p>可以把这个网址复制下来保存着，也可以记住http:&#x2F;&#x2F;你的ip&#x2F;dashboard。</p>
+<h2 id="安装chrome浏览器"><a href="#安装chrome浏览器" class="headerlink" title="安装chrome浏览器"></a>安装chrome浏览器</h2><p>我不知道CentOS有没有自带的浏览器，所以为了更好的使用体验，我自行安装了google浏览器。</p>
+<ul>
+<li>首先用命令wget下载最新的Google chrome .rpm程序包</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="regexp">//</span>dl.google.com<span class="regexp">/linux/</span>direct/google-chrome-stable_current_x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载文件后，通过键入以下内容在CentOS7系统上安装Google Chrome</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> yum localinstall google-chrome-stable_current_x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令将提示你输入用户密码，然后将安装Chrome和所有其它必须的软件包</p>
+<ul>
+<li>生成桌面快捷方式</li>
+</ul>
+<p>首先进入desktop目录</p>
+<p>普通用户输入命令</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/Desktop</span></span><br></pre></td></tr></table></figure>
+
+<p>root用户输入命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="regexp">/root/</span>Desktop</span><br></pre></td></tr></table></figure>
+
+<p>然后输入命令</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> vim chrome.desktop</span><br></pre></td></tr></table></figure>
+
+<p>在打开的文件中，按i键进入编辑模式，然后粘贴下面的代码</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env xdg-open</span></span><br><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">BinaryPattern</span>=chrome<span class="comment">;</span></span><br><span class="line"><span class="attr">MimeType</span>=</span><br><span class="line"><span class="attr">Name</span>=chrome</span><br><span class="line"><span class="attr">Exec</span>=/usr/bin/google-chrome --<span class="literal">no</span>-sandbox</span><br><span class="line"><span class="attr">Icon</span>=/opt/google/chrome/product_logo_32.png</span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Terminal</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>完成后按esc退出编辑模式，输入:wq保存并退出。</p>
+<p>接下来如果有权限不足的问题，桌面图标将会是：</p>
+<p><img src="/../img/openstack/QQ20220330172116.png"></p>
+<p>如果你是和我一样的这种情况，就继续下一步，否则跳过下一步</p>
+<ul>
+<li>修改快捷方式权限</li>
+</ul>
+<p>在命令行中进入root模式，并且进入desktop目录</p>
+<p>然后运行下面两条命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -R 777 chrome.desktop</span><br><span class="line"><span class="built_in">chown</span> 用户名:用户名 chrome.desktop</span><br></pre></td></tr></table></figure>
+
+<p>这里的用户名你需要替换成你的用户名，比如我的虚拟机用户叫centos，那么我输入命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> centos:centos chrome.desktop</span><br></pre></td></tr></table></figure>
+
+<p>执行完后，你会发现图标上的锁不见了，双击它，点击信任，就可以使用浏览器了</p>
+<h2 id="使用openstack"><a href="#使用openstack" class="headerlink" title="使用openstack"></a>使用openstack</h2><ul>
+<li>在浏览器中输入网址，就可以进入到openstack的登陆界面</li>
+</ul>
+<p><img src="/../img/openstack/7dKFs3VXQsP3.png"></p>
+<p><img src="/../img/openstack/image-20220330172715014.png" alt="image-20220330172715014"></p>
+<ul>
+<li>用户名和密码在root目录下的keystonerc_admin中</li>
+</ul>
+<p><img src="/../img/openstack/925pK5Ubxsox.png"></p>
+<ul>
+<li>使用上面的用户名和密码登录OpenStack</li>
+</ul>
+<p><img src="/../img/openstack/FskCFnnzpian.png"></p>
+<p>至此，openstack就安装完成了，想了解更多内容，可以去参考其他大神的博客。</p>
 
       
 
@@ -238,7 +341,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">云计算</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境部署</a>
         		</li>
       		
 		</ul>
@@ -294,7 +397,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/03/11/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A1-%E4%BA%91%E4%BD%BF%E8%83%BD%E6%8A%80%E6%9C%AF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/03/30/build-openstack/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,15 +411,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/03/11/%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          心路历程
-        
-      </div>
-    </a>
   
+    <a href="/2022/03/19/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%BD%9C%E4%B8%9A2-%E5%9F%BA%E6%9C%AC%E4%BA%91%E5%AE%89%E5%85%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云计算作业2-基本云安全</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -341,7 +440,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BA%91%E4%BD%BF%E8%83%BD%E6%8A%80%E6%9C%AF%E5%8C%85%E6%8B%AC%E5%93%AA%E4%BA%9B%E6%8A%80%E6%9C%AF%E7%BB%84%E4%BB%B6%EF%BC%9F%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E%E5%85%B6%E5%85%B3%E9%94%AE%E7%89%B9%E5%BE%81%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">1-1 云使能技术包括哪些技术组件？用一句话简要说明其关键特征。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%88%97%E4%B8%BE%E8%87%B3%E5%B0%913%E7%A7%8D%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BD%AF%E4%BB%B6%EF%BC%8C%E5%B9%B6%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A6%82%E6%8B%AC%E5%85%B6%E7%89%B9%E7%82%B9%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">1-2 列举至少3种虚拟化软件，并用一句话概括其特点。</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%B5%84%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">使用到的资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">安装CentOS虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85openstack"><span class="toc-number">3.</span> <span class="toc-text">安装openstack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85chrome%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">安装chrome浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8openstack"><span class="toc-number">5.</span> <span class="toc-text">使用openstack</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -357,7 +456,7 @@
   
 
   
-  <div id="SOHUCS" sid="云计算作业1-云使能技术" ></div> 
+  <div id="SOHUCS" sid="build-openstack" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -373,8 +472,8 @@
   
     <section id="comments">
   <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-  <div id="SOHUCS" sid="云计算作业1-云使能技术"></div>
-  <!-- <div id="SOHUCS" sid="云计算作业1-云使能技术" style="padding: 0px 30px 0px 46px;"></div> -->
+  <div id="SOHUCS" sid="记录安装openstack的过程"></div>
+  <!-- <div id="SOHUCS" sid="记录安装openstack的过程" style="padding: 0px 30px 0px 46px;"></div> -->
 
   <script>
     (function(){

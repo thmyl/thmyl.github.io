@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thmyl | Home</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    .header p {
+      color: #666;
+      margin-top: 10px;
+    }
+
+    /* 卡片布局 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #999;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>👋 Hi, I'm Thmyl</h1>
+      <p>欢迎来到我的个人主页</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>📚 博客</h2>
+        <p>记录学习、技术和思考</p>
+        <a href="/blog/">进入博客 →</a>
+      </div>
+
+      <div class="card">
+        <h2>💻 项目</h2>
+        <p>展示我的一些作品</p>
+        <a href="#">查看项目 →</a>
+      </div>
+
+      <div class="card">
+        <h2>📖 关于我</h2>
+        <p>了解我的背景和兴趣</p>
+        <a href="#">了解更多 →</a>
+      </div>
+
+      <div class="card">
+        <h2>🐙 GitHub</h2>
+        <p>我的代码仓库合集</p>
+        <a href="https://github.com/">访问 →</a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      © 2026 Thmyl · Built with GitHub Pages
+    </div>
+
+  </div>
+
+</body>
+</html>

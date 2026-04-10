@@ -1,132 +1,399 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thmyl | Home</title>
-
+  <meta name="description" content="Thmyl — 个人学术主页">
+  <title>Thmyl | Academic Homepage</title>
   <style>
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #1c1917;
+      --muted: #57534e;
+      --accent: #0c4a6e;
+      --accent-soft: #e0f2fe;
+      --border: #e7e5e4;
+      --radius: 10px;
+      --font-sans: "Source Sans 3", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      --font-serif: "Source Serif 4", "Noto Serif SC", "Songti SC", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f6f8;
-      color: #333;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
     }
 
-    .container {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 20px;
-    }
-
-    /* 头部 */
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 36px;
-    }
-
-    .header p {
-      color: #666;
-      margin-top: 10px;
-    }
-
-    /* 卡片布局 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
-
-    .card p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #007bff;
+    a {
+      color: var(--accent);
       text-decoration: none;
     }
 
-    .card a:hover {
+    a:hover {
       text-decoration: underline;
     }
 
-    /* 页脚 */
-    .footer {
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      left: 0;
+    }
+
+    /* 顶栏 */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 250, 249, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .hero {
+        grid-template-columns: 140px 1fr;
+        align-items: start;
+      }
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, var(--accent-soft), #fff);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 auto;
+    }
+
+    @media (min-width: 720px) {
+      .avatar {
+        margin: 0;
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+      line-height: 1.2;
+    }
+
+    .tagline {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .bio {
+      margin: 0 0 1rem;
+      max-width: 52ch;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .links span {
+      color: var(--border);
+      user-select: none;
+    }
+
+    /* 章节 */
+    section {
+      margin-bottom: 2.75rem;
+    }
+
+    section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    .meta {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    /* 研究条目 */
+    .pub {
+      margin-bottom: 0.35rem;
+    }
+
+    .pub-title {
+      font-weight: 600;
+    }
+
+    .pub-venue {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    ul.news-list {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    ul.news-list li {
+      margin-bottom: 0.65rem;
+    }
+
+    ul.news-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .news-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-right: 0.35rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
       text-align: center;
-      margin-top: 60px;
-      color: #999;
-      font-size: 12px;
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
 
-  <div class="container">
-
-    <div class="header">
-      <h1>👋 Hi, I'm Thmyl</h1>
-      <p>欢迎来到我的个人主页</p>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#">Thmyl</a>
+      <nav aria-label="页面导航">
+        <ul>
+          <li><a href="#about">简介</a></li>
+          <li><a href="#education">教育背景</a></li>
+          <li><a href="#research">研究</a></li>
+          <li><a href="#news">动态</a></li>
+          <li><a href="#contact">联系</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <div class="grid">
-
-      <div class="card">
-        <h2>📚 博客</h2>
-        <p>记录学习、技术和思考</p>
-        <a href="/blog/">进入博客 →</a>
+  <main id="main" class="wrap">
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">T</div>
+      <div>
+        <h1>Thmyl</h1>
+        <p class="tagline">博士研究生 · 某大学 · 某实验室（请替换为你的真实信息）</p>
+        <p class="bio">
+          研究方向涵盖机器学习与科学计算交叉领域，关注可解释模型与高效算法。欢迎合作与交流。
+          （此处为示例简介，请根据你的实际背景修改。）
+        </p>
+        <div class="links">
+          <a href="mailto:you@example.edu">邮箱</a>
+          <span>|</span>
+          <a href="https://scholar.google.com/">Google Scholar</a>
+          <span>|</span>
+          <a href="https://github.com/">GitHub</a>
+          <span>|</span>
+          <a href="/blog/">博客</a>
+        </div>
       </div>
+    </header>
 
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">个人介绍</h2>
       <div class="card">
-        <h2>💻 项目</h2>
-        <p>展示我的一些作品</p>
-        <a href="#">查看项目 →</a>
+        <p>
+          我目前专注于 [研究方向关键词] 相关课题，此前在 [本科/硕士院校] 获得 [学位]。
+          在课余时间，我对开源工具与教学材料整理也有兴趣。
+        </p>
+        <p style="margin-top: 0.75rem;">
+          <strong>研究兴趣：</strong> 主题 A；主题 B；主题 C（可改为你的关键词列表）。
+        </p>
       </div>
+    </section>
 
+    <section id="education" aria-labelledby="edu-heading">
+      <h2 id="edu-heading">教育背景</h2>
       <div class="card">
-        <h2>📖 关于我</h2>
-        <p>了解我的背景和兴趣</p>
-        <a href="#">了解更多 →</a>
+        <h3>博士学位 · 计算机科学（示例）</h3>
+        <p class="meta">某大学 · 2022 — 至今</p>
+        <p>导师：某某教授。论文题目：（待定）。</p>
       </div>
-
       <div class="card">
-        <h2>🐙 GitHub</h2>
-        <p>我的代码仓库合集</p>
-        <a href="https://github.com/">访问 →</a>
+        <h3>硕士学位 · 某专业（示例）</h3>
+        <p class="meta">某大学 · 2019 — 2022</p>
+        <p>相关课程与荣誉可写在此处。</p>
       </div>
+      <div class="card">
+        <h3>学士学位 · 某专业（示例）</h3>
+        <p class="meta">某大学 · 2015 — 2019</p>
+      </div>
+    </section>
 
-    </div>
+    <section id="research" aria-labelledby="research-heading">
+      <h2 id="research-heading">研究</h2>
+      <div class="card">
+        <p style="margin-bottom: 0.85rem;">
+          以下为代表性论文与项目占位，请替换为真实条目；可使用 BibTeX 或 Markdown 维护后粘贴至此。
+        </p>
+        <div class="pub">
+          <span class="pub-title">论文标题示例：Your Awesome Paper Title</span>
+          <div class="pub-venue">会议/期刊缩写 · 2025 · <a href="#">PDF</a> · <a href="#">代码</a></div>
+        </div>
+        <div class="pub">
+          <span class="pub-title">另一篇合作工作 Another Collaborative Work</span>
+          <div class="pub-venue">Workshop · 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>项目与软件</h3>
+        <p class="meta">开源仓库、数据集或演示链接可列于此。</p>
+        <p><a href="#">项目名称</a> — 一句话描述。</p>
+      </div>
+    </section>
 
-    <div class="footer">
-      © 2026 Thmyl · Built with GitHub Pages
-    </div>
+    <section id="news" aria-labelledby="news-heading">
+      <h2 id="news-heading">动态</h2>
+      <div class="card">
+        <ul class="news-list">
+          <li><span class="news-date">2026-04</span>示例：论文被某会议接收（请替换）。</li>
+          <li><span class="news-date">2026-03</span>示例：学术报告 / 审稿 / 获奖简讯。</li>
+          <li><span class="news-date">2026-01</span>示例：个人主页上线。</li>
+        </ul>
+      </div>
+    </section>
 
-  </div>
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">联系</h2>
+      <div class="card">
+        <p>
+          办公室：某某楼某某室（可选）<br>
+          邮箱：<a href="mailto:you@example.edu">you@example.edu</a>
+        </p>
+      </div>
+    </section>
 
+    <footer>
+      © 2026 Thmyl · 学术主页 · 可部署于 GitHub Pages等平台
+    </footer>
+  </main>
 </body>
 </html>

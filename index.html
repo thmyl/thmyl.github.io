@@ -1,399 +1,823 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en" class="scroll-smooth" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Thmyl — 个人学术主页">
-  <title>Thmyl | Academic Homepage</title>
+  <title>Jiale Liu</title>
+  <meta name="description" content="PhD student at the University of Example.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafaf9;
-      --surface: #ffffff;
-      --text: #1c1917;
-      --muted: #57534e;
-      --accent: #0c4a6e;
-      --accent-soft: #e0f2fe;
-      --border: #e7e5e4;
-      --radius: 10px;
-      --font-sans: "Source Sans 3", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-      --font-serif: "Source Serif 4", "Noto Serif SC", "Songti SC", Georgia, serif;
+      --primary: #1e293b;
+      --accent: #d4a562;
+      --background: #fefffe;
+      --muted: #525252;
+      --muted2: #737373;
+      --border: #e5e5e5;
+      --card: #fafafa;
+      --nav-hover: #f5f5f5;
+      --like-bg: #f5f5f5;
+      --shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
     }
 
-    * {
-      box-sizing: border-box;
+    [data-theme="dark"] {
+      --primary: #f8fafc;
+      --accent: #e4b976;
+      --background: #0f172a;
+      --muted: #94a3b8;
+      --muted2: #64748b;
+      --border: rgba(148, 163, 184, 0.24);
+      --card: #1e293b;
+      --nav-hover: rgba(30, 41, 59, 0.8);
+      --like-bg: #1e293b;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.35);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
       font-family: var(--font-sans);
       font-size: 16px;
-      line-height: 1.65;
-      color: var(--text);
-      background: var(--bg);
+      line-height: 1.5;
+      color: var(--primary);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: var(--accent);
+      color: inherit;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .skip-link {
-      position: absolute;
-      left: -9999px;
+    .nav-wrap {
+      position: fixed;
       top: 0;
-      padding: 0.5rem 1rem;
-      background: var(--accent);
-      color: #fff;
-      z-index: 100;
-    }
-
-    .skip-link:focus {
       left: 0;
-    }
-
-    /* 顶栏 */
-    .topbar {
-      position: sticky;
-      top: 0;
+      right: 0;
       z-index: 50;
-      background: rgba(250, 250, 249, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--background) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     }
 
-    .topbar-inner {
-      max-width: 960px;
+    .nav-inner {
+      max-width: 80rem;
       margin: 0 auto;
-      padding: 0.65rem 1.25rem;
+      padding: 0 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
+      min-height: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-inner {
+        padding: 0 2rem;
+        min-height: 5rem;
+      }
     }
 
     .brand {
       font-family: var(--font-serif);
+      font-size: 1.25rem;
       font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text);
+      color: var(--primary);
+      transition: color 0.2s;
     }
 
-    .brand:hover {
-      text-decoration: none;
-      color: var(--accent);
+    .brand:hover { color: var(--accent); }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
     }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    @media (min-width: 1024px) {
+      .nav-desktop { display: flex; }
+    }
+
+    .nav-desktop a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+      color: var(--muted);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-desktop a:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
+    }
+
+    .nav-desktop a.is-active {
+      color: var(--primary);
+    }
+
+    .nav-tools {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem 1.1rem;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    nav a {
-      font-size: 0.9rem;
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      color: var(--accent);
+      background: var(--nav-hover);
+    }
+
+    .nav-mobile-toggle {
+      display: inline-flex;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .nav-mobile-toggle:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
+    }
+
+    @media (min-width: 1024px) {
+      .nav-mobile-toggle { display: none; }
+    }
+
+    .mobile-panel {
+      display: none;
+      padding: 0.75rem 1rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--background);
+    }
+
+    .mobile-panel.is-open { display: block; }
+
+    @media (min-width: 1024px) {
+      .mobile-panel { display: none !important; }
+    }
+
+    .mobile-panel a {
+      display: block;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
       color: var(--muted);
     }
 
-    nav a:hover {
-      color: var(--accent);
+    .mobile-panel a:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
     }
 
-    .wrap {
-      max-width: 960px;
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    main {
+      min-height: 100vh;
+      padding-top: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      main { padding-top: 5rem; }
+    }
+
+    .page {
+      max-width: 72rem;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 4rem;
+      padding: 2rem 1rem;
+      min-height: 100vh;
     }
 
-    /* Hero */
-    .hero {
+    @media (min-width: 1024px) {
+      .page { padding: 2rem 2rem; }
+    }
+
+    .grid-main {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.75rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 2.5rem;
+      gap: 3rem;
     }
 
-    @media (min-width: 720px) {
-      .hero {
-        grid-template-columns: 140px 1fr;
+    @media (min-width: 1024px) {
+      .grid-main {
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
         align-items: start;
       }
     }
 
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 12px;
-      background: linear-gradient(145deg, var(--accent-soft), #fff);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin: 0 auto;
+    .sidebar {
+      position: relative;
     }
 
-    @media (min-width: 720px) {
-      .avatar {
-        margin: 0;
+    @media (min-width: 1024px) {
+      .sidebar-inner {
+        position: sticky;
+        top: 2rem;
       }
     }
 
-    .hero h1 {
+    .photo-wrap {
+      width: 16rem;
+      height: 16rem;
+      margin: 0 auto 1.5rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .photo-wrap:hover {
+      transform: scale(1.03);
+      box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 32% center;
+    }
+
+    .identity {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .identity h1 {
       font-family: var(--font-serif);
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      font-weight: 600;
-      margin: 0 0 0.35rem;
-      line-height: 1.2;
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
 
-    .tagline {
-      margin: 0 0 1rem;
-      color: var(--muted);
+    .identity .role {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .identity .inst {
       font-size: 1rem;
+      color: var(--muted);
     }
 
-    .bio {
-      margin: 0 0 1rem;
-      max-width: 52ch;
-    }
-
-    .links {
+    .social-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-      font-size: 0.9rem;
+      justify-content: center;
+      gap: 0.25rem 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .links span {
-      color: var(--border);
-      user-select: none;
+    .social-row a,
+    .social-row button.raw-icon {
+      padding: 0.5rem;
+      color: var(--muted);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 0.25rem;
+      transition: color 0.2s;
     }
 
-    /* 章节 */
-    section {
-      margin-bottom: 2.75rem;
+    .social-row a:hover,
+    .social-row button.raw-icon:hover {
+      color: var(--accent);
     }
 
-    section h2 {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin: 0 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
+    .social-row svg {
+      width: 1.25rem;
+      height: 1.25rem;
     }
 
-    .card {
-      background: var(--surface);
+    .interests {
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.15rem 1.25rem;
-      margin-bottom: 0.85rem;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .card:last-child {
-      margin-bottom: 0;
+    .interests:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow);
     }
 
-    .card h3 {
+    .interests h3 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .interests ul {
+      list-style: none;
+      font-size: 0.875rem;
+      color: #404040;
+    }
+
+    [data-theme="dark"] .interests ul {
+      color: var(--muted2);
+    }
+
+    .interests li + li { margin-top: 0.5rem; }
+
+    .like-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .like-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 0.5rem;
+      background: var(--like-bg);
+      color: var(--muted2);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .like-btn:hover {
+      background: color-mix(in srgb, #fecaca 35%, var(--like-bg));
+      color: #dc2626;
+    }
+
+    [data-theme="dark"] .like-btn:hover {
+      background: color-mix(in srgb, #7f1d1d 35%, var(--like-bg));
+      color: #f87171;
+    }
+
+    .like-btn.is-liked {
+      color: #dc2626;
+    }
+
+    [data-theme="dark"] .like-btn.is-liked {
+      color: #f87171;
+    }
+
+    .content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .content-col section {
+      scroll-margin-top: 6rem;
+    }
+
+    .content-col h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .pub-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .pub-head h2 { margin-bottom: 0; }
+
+    .link-accent {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .link-accent:hover {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      text-decoration: none;
+    }
+
+    .prose {
+      color: #404040;
+      line-height: 1.625;
+    }
+
+    [data-theme="dark"] .prose {
+      color: var(--muted);
+    }
+
+    .prose p { margin-bottom: 1rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    .prose a {
+      color: var(--accent);
+      font-weight: 500;
+      padding: 0 0.125rem;
+      border-radius: 0.25rem;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .prose a:hover {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      text-decoration: none;
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pub-card {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .pub-card:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow);
+    }
+
+    .pub-card h3 {
       font-size: 1rem;
       font-weight: 600;
-      margin: 0 0 0.25rem;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
     }
 
-    .meta {
-      font-size: 0.88rem;
+    .pub-authors {
+      font-size: 0.875rem;
       color: var(--muted);
-      margin: 0 0 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
-    .card p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
+    .pub-authors .hl { font-weight: 600; color: var(--accent); }
+    .pub-authors sup { margin-left: 0.125rem; font-size: 0.75rem; color: var(--muted2); }
 
-    /* 研究条目 */
-    .pub {
-      margin-bottom: 0.35rem;
-    }
-
-    .pub-title {
-      font-weight: 600;
+    .pub-authors sup.corresponding {
+      color: var(--accent);
     }
 
     .pub-venue {
-      font-size: 0.88rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-abs {
+      font-size: 0.875rem;
+      color: var(--muted2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .news-item time {
+      flex-shrink: 0;
+      width: 4rem;
+      font-size: 0.75rem;
+      color: var(--muted2);
+      margin-top: 0.125rem;
+    }
+
+    .news-item p {
+      font-size: 0.875rem;
+      color: #404040;
+    }
+
+    [data-theme="dark"] .news-item p {
       color: var(--muted);
     }
 
-    ul.news-list {
-      margin: 0;
-      padding-left: 1.15rem;
+    .stub {
+      font-size: 0.9375rem;
+      color: var(--muted2);
+      padding: 0.5rem 0;
     }
 
-    ul.news-list li {
-      margin-bottom: 0.65rem;
+    footer.site-footer {
+      border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+      background: color-mix(in srgb, var(--card) 50%, var(--background));
+      margin-top: 2rem;
     }
 
-    ul.news-list li:last-child {
-      margin-bottom: 0;
+    [data-theme="dark"] footer.site-footer {
+      background: color-mix(in srgb, #0f172a 85%, #1e293b);
     }
 
-    .news-date {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-right: 0.35rem;
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted2);
     }
 
-    footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
+
+    .footer-inner a {
+      color: var(--muted2);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .footer-inner a:hover { color: var(--accent); }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      animation: fade-up 0.5s ease-out forwards;
+    }
+
+    .delay-1 { animation-delay: 0.08s; opacity: 0; }
+    .delay-2 { animation-delay: 0.16s; opacity: 0; }
+    .delay-3 { animation-delay: 0.24s; opacity: 0; }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到主要内容</a>
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#">Thmyl</a>
-      <nav aria-label="页面导航">
-        <ul>
-          <li><a href="#about">简介</a></li>
-          <li><a href="#education">教育背景</a></li>
-          <li><a href="#research">研究</a></li>
-          <li><a href="#news">动态</a></li>
-          <li><a href="#contact">联系</a></li>
-        </ul>
-      </nav>
+  <header class="nav-wrap">
+    <div class="nav-inner">
+      <a class="brand" href="#">Jiale Liu</a>
+      <div class="nav-desktop" aria-label="Primary">
+        <a class="is-active" href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#awards">Awards</a>
+        <a href="#services">Services</a>
+        <a href="#cv">CV</a>
+      </div>
+      <div class="nav-tools">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Theme">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+        </button>
+        <button type="button" class="nav-mobile-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="sr-only">Open main menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-panel" id="mobile-nav" hidden>
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards</a>
+      <a href="#services">Services</a>
+      <a href="#cv">CV</a>
     </div>
   </header>
 
-  <main id="main" class="wrap">
-    <header class="hero">
-      <div class="avatar" aria-hidden="true">T</div>
-      <div>
-        <h1>Thmyl</h1>
-        <p class="tagline">博士研究生 · 某大学 · 某实验室（请替换为你的真实信息）</p>
-        <p class="bio">
-          研究方向涵盖机器学习与科学计算交叉领域，关注可解释模型与高效算法。欢迎合作与交流。
-          （此处为示例简介，请根据你的实际背景修改。）
-        </p>
-        <div class="links">
-          <a href="mailto:you@example.edu">邮箱</a>
-          <span>|</span>
-          <a href="https://scholar.google.com/">Google Scholar</a>
-          <span>|</span>
-          <a href="https://github.com/">GitHub</a>
-          <span>|</span>
-          <a href="/blog/">博客</a>
+  <main>
+    <div class="page">
+      <div class="grid-main">
+        <aside class="sidebar">
+          <div class="sidebar-inner reveal">
+            <div class="photo-wrap">
+              <img src="https://prism-demo.pages.dev/bio.jpg" width="256" height="256" alt="Jiale Liu">
+            </div>
+            <div class="identity">
+              <h1>Jiale Liu</h1>
+              <p class="role">PhD Student</p>
+              <p class="inst">University of Example</p>
+            </div>
+            <div class="social-row">
+              <button type="button" class="raw-icon" aria-label="Email" title="Email" onclick="window.location.href='mailto:john.doe@example.com'">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+              </button>
+              <button type="button" class="raw-icon" aria-label="Location" title="Location" onclick="window.open('https://maps.google.com','_blank')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+              </button>
+              <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg></a>
+              <a href="https://orcid.org" target="_blank" rel="noopener noreferrer" aria-label="ORCID"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+            </div>
+            <div class="interests">
+              <h3>Research Interests</h3>
+              <ul>
+                <li>Computational Physics</li>
+                <li>Mathematical Principles</li>
+                <li>Proof of Theorems</li>
+              </ul>
+            </div>
+            <div class="like-wrap">
+              <button type="button" class="like-btn" id="like-btn" aria-pressed="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+                <span>Like</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="content-col">
+          <section id="about" class="reveal delay-1">
+            <h2>About</h2>
+            <div class="prose">
+              <p>I am a PhD student at the School of Science, University of Example, advised by <a href="https://example.com" target="_blank" rel="noopener noreferrer">Prof. Advisor One</a> and <a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Advisor Two</a>.</p>
+              <p>Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.</p>
+              <p>My current research focuses on investigating the mathematical principles of natural philosophy.</p>
+            </div>
+          </section>
+
+          <section id="publications" class="reveal delay-2">
+            <div class="pub-head">
+              <h2>Selected Publications</h2>
+              <a class="link-accent" href="publications.html">View All →</a>
+            </div>
+            <div class="pub-list">
+              <article class="pub-card">
+                <h3>Algorithmic Complexity of Tensor Network Contractions in Many-Body Localization</h3>
+                <p class="pub-authors"><span class="hl">Jiale Liu</span>, <span>Ada Lovelace<sup>&dagger;</sup></span></p>
+                <p class="pub-venue">Physical Review E</p>
+                <p class="pub-abs">Complexity analysis of tensor network contractions in MBL systems, identifying a complexity phase transition and proposing an adaptive algorithm.</p>
+              </article>
+              <article class="pub-card">
+                <h3>Numerical Stability Analysis of High-Order Runge-Kutta Methods in Quantum Dynamics</h3>
+                <p class="pub-authors"><span class="hl">Jiale Liu</span>, <span>Sarah O'Connor<sup>&dagger;</sup></span></p>
+                <p class="pub-venue">Journal of Computational Physics</p>
+                <p class="pub-abs">A rigorous analysis of numerical stability boundaries for high-order Runge-Kutta integrators in the context of time-dependent quantum mechanics.</p>
+              </article>
+              <article class="pub-card">
+                <h3>Monte Carlo Simulations of Phase Transitions in 2D Ising Models on Non-Euclidean Lattices</h3>
+                <p class="pub-authors"><span>Charlie Brown</span>, <span class="hl">Jiale Liu<sup class="corresponding">&dagger;</sup></span></p>
+                <p class="pub-venue">2023 International Conference on Computational Physics (ICCP)</p>
+                <p class="pub-abs">Monte Carlo study revealing mean-field-like phase transitions and critical exponent deviations for Ising models on hyperbolic non-Euclidean lattices.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="news" class="reveal delay-3">
+            <h2>News</h2>
+            <div class="news-list">
+              <div class="news-item">
+                <time datetime="2025-11">2025-11</time>
+                <p>Our work has been accepted by a prestigious journal &#x1F389;</p>
+              </div>
+              <div class="news-item">
+                <time datetime="2025-09">2025-09</time>
+                <p>Starting my PhD at the University of Example</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="teaching">
+            <h2>Teaching</h2>
+            <p class="stub">在此添加课程与助教信息（演示站为独立页面，此处为占位）。</p>
+          </section>
+          <section id="awards">
+            <h2>Awards</h2>
+            <p class="stub">奖项与荣誉列表占位。</p>
+          </section>
+          <section id="services">
+            <h2>Services</h2>
+            <p class="stub">审稿、组委会等服务经历占位。</p>
+          </section>
+          <section id="cv">
+            <h2>CV</h2>
+            <p class="stub"><a href="#" class="link-accent">下载 PDF简历</a>（请替换为真实文件链接）。</p>
+          </section>
         </div>
       </div>
-    </header>
-
-    <section id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">个人介绍</h2>
-      <div class="card">
-        <p>
-          我目前专注于 [研究方向关键词] 相关课题，此前在 [本科/硕士院校] 获得 [学位]。
-          在课余时间，我对开源工具与教学材料整理也有兴趣。
-        </p>
-        <p style="margin-top: 0.75rem;">
-          <strong>研究兴趣：</strong> 主题 A；主题 B；主题 C（可改为你的关键词列表）。
-        </p>
-      </div>
-    </section>
-
-    <section id="education" aria-labelledby="edu-heading">
-      <h2 id="edu-heading">教育背景</h2>
-      <div class="card">
-        <h3>博士学位 · 计算机科学（示例）</h3>
-        <p class="meta">某大学 · 2022 — 至今</p>
-        <p>导师：某某教授。论文题目：（待定）。</p>
-      </div>
-      <div class="card">
-        <h3>硕士学位 · 某专业（示例）</h3>
-        <p class="meta">某大学 · 2019 — 2022</p>
-        <p>相关课程与荣誉可写在此处。</p>
-      </div>
-      <div class="card">
-        <h3>学士学位 · 某专业（示例）</h3>
-        <p class="meta">某大学 · 2015 — 2019</p>
-      </div>
-    </section>
-
-    <section id="research" aria-labelledby="research-heading">
-      <h2 id="research-heading">研究</h2>
-      <div class="card">
-        <p style="margin-bottom: 0.85rem;">
-          以下为代表性论文与项目占位，请替换为真实条目；可使用 BibTeX 或 Markdown 维护后粘贴至此。
-        </p>
-        <div class="pub">
-          <span class="pub-title">论文标题示例：Your Awesome Paper Title</span>
-          <div class="pub-venue">会议/期刊缩写 · 2025 · <a href="#">PDF</a> · <a href="#">代码</a></div>
-        </div>
-        <div class="pub">
-          <span class="pub-title">另一篇合作工作 Another Collaborative Work</span>
-          <div class="pub-venue">Workshop · 2024</div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>项目与软件</h3>
-        <p class="meta">开源仓库、数据集或演示链接可列于此。</p>
-        <p><a href="#">项目名称</a> — 一句话描述。</p>
-      </div>
-    </section>
-
-    <section id="news" aria-labelledby="news-heading">
-      <h2 id="news-heading">动态</h2>
-      <div class="card">
-        <ul class="news-list">
-          <li><span class="news-date">2026-04</span>示例：论文被某会议接收（请替换）。</li>
-          <li><span class="news-date">2026-03</span>示例：学术报告 / 审稿 / 获奖简讯。</li>
-          <li><span class="news-date">2026-01</span>示例：个人主页上线。</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">联系</h2>
-      <div class="card">
-        <p>
-          办公室：某某楼某某室（可选）<br>
-          邮箱：<a href="mailto:you@example.edu">you@example.edu</a>
-        </p>
-      </div>
-    </section>
-
-    <footer>
-      © 2026 Thmyl · 学术主页 · 可部署于 GitHub Pages等平台
-    </footer>
+    </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>Last updated: <span id="last-updated">April 10, 2026</span></p>
+      <p>
+        <a href="https://github.com/xyjoey/PRISM" target="_blank" rel="noopener noreferrer">Built with PRISM</a>
+        <span aria-hidden="true" style="margin-left:0.35rem">&#x1F680;</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var key = 'prism-clone-theme';
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        var sun = document.getElementById('icon-sun');
+        var moon = document.getElementById('icon-moon');
+        if (sun && moon) {
+          sun.style.display = t === 'dark' ? 'none' : 'block';
+          moon.style.display = t === 'dark' ? 'block' : 'none';
+        }
+        try { localStorage.setItem(key, t); } catch (e) {}
+      }
+      var saved = null;
+      try { saved = localStorage.getItem(key); } catch (e) {}
+      if (saved === 'light' || saved === 'dark') apply(saved);
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) apply('dark');
+      else apply('light');
+
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+      });
+
+      var menu = document.getElementById('mobile-nav');
+      var toggle = document.getElementById('menu-toggle');
+      toggle.addEventListener('click', function () {
+        var open = menu.classList.toggle('is-open');
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('is-open');
+          menu.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      var like = document.getElementById('like-btn');
+      var likeKey = 'prism-clone-like';
+      try {
+        if (localStorage.getItem(likeKey) === '1') {
+          like.classList.add('is-liked');
+          like.setAttribute('aria-pressed', 'true');
+        }
+      } catch (e) {}
+      like.addEventListener('click', function () {
+        var on = like.classList.toggle('is-liked');
+        like.setAttribute('aria-pressed', on ? 'true' : 'false');
+        try { localStorage.setItem(likeKey, on ? '1' : '0'); } catch (e) {}
+      });
+    })();
+  </script>
 </body>
 </html>

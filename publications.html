@@ -1,30 +1,972 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publications | Jiale Liu</title>
+  <title>Publications | Yiling Ma</title>
+  <meta name="description" content="A collection of my research work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      max-width: 48rem;
-      margin: 2.5rem auto;
-      padding: 0 1.25rem;
-      line-height: 1.6;
-      color: #1e293b;
-      background: #fefffe;
+    :root {
+      --primary: #1e293b;
+      --accent: #d4a562;
+      --background: #fefffe;
+      --muted: #525252;
+      --muted2: #737373;
+      --border: #e5e5e5;
+      --card: #ffffff;
+      --nav-hover: #f5f5f5;
+      --chip: #f5f5f5;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
     }
-    a { color: #d4a562; font-weight: 500; }
-    h1 { font-family: Georgia, serif; font-size: 1.75rem; margin-bottom: 1rem; }
-    p { color: #525252; }
+
+    [data-theme="dark"] {
+      --primary: #f8fafc;
+      --accent: #e4b976;
+      --background: #0f172a;
+      --muted: #94a3b8;
+      --muted2: #64748b;
+      --border: rgba(148, 163, 184, 0.24);
+      --card: #0f172a;
+      --nav-hover: rgba(30, 41, 59, 0.8);
+      --chip: #1e293b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--primary);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--background) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+    }
+
+    .nav-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-inner { padding: 0 2rem; min-height: 5rem; }
+    }
+
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      transition: color 0.2s;
+    }
+
+    .brand:hover { color: var(--accent); }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-desktop { display: flex; }
+    }
+
+    .nav-desktop a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+      color: var(--muted);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-desktop a:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
+    }
+
+    .nav-desktop a.is-active { color: var(--primary); }
+
+    .nav-tools { display: flex; align-items: center; gap: 0.5rem; }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .icon-btn:hover { color: var(--accent); background: var(--nav-hover); }
+
+    .nav-mobile-toggle {
+      display: inline-flex;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .nav-mobile-toggle:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
+    }
+
+    @media (min-width: 1024px) {
+      .nav-mobile-toggle { display: none; }
+    }
+
+    .mobile-panel {
+      display: none;
+      padding: 0.75rem 1rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--background);
+    }
+
+    .mobile-panel.is-open { display: block; }
+
+    @media (min-width: 1024px) {
+      .mobile-panel { display: none !important; }
+    }
+
+    .mobile-panel a {
+      display: block;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+      color: var(--muted);
+    }
+
+    .mobile-panel a:hover {
+      color: var(--primary);
+      background: var(--nav-hover);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    main {
+      min-height: 100vh;
+      padding-top: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      main { padding-top: 5rem; }
+    }
+
+    .pub-page {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 3rem 1rem 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      .pub-page { padding: 3rem 2rem 4rem; }
+    }
+
+    .pub-page h1 {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .pub-page .lede {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .toolbar {
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--muted2);
+      pointer-events: none;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--primary);
+      font-size: 0.9375rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .search-wrap input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+
+    .btn-filter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-filter:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-filter svg { width: 1.25rem; height: 1.25rem; }
+
+    .filter-panel {
+      display: none;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--chip);
+    }
+
+    .filter-panel.is-open { display: block; }
+
+    .filter-panel fieldset {
+      border: none;
+      margin-bottom: 1rem;
+    }
+
+    .filter-panel fieldset:last-child { margin-bottom: 0; }
+
+    .filter-panel legend {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted2);
+      margin-bottom: 0.5rem;
+    }
+
+    .filter-opts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+    }
+
+    .filter-opts label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.875rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .pub-sheet {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    .pub-sheet:hover {
+      box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+    }
+
+    [data-theme="dark"] .pub-sheet:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+
+    .pub-sheet.is-hidden { display: none; }
+
+    .pub-sheet-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .pub-sheet-inner { flex-direction: row; }
+    }
+
+    .pub-thumb {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .pub-thumb { width: 12rem; }
+    }
+
+    .pub-thumb figure {
+      margin: 0;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background: var(--chip);
+      aspect-ratio: 4 / 3;
+    }
+
+    .pub-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pub-body { flex: 1; min-width: 0; }
+
+    .pub-body h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .authors {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    [data-theme="dark"] .authors { color: var(--muted2); }
+
+    .authors .hl {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .authors .u {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: color-mix(in srgb, var(--muted2) 50%, transparent);
+    }
+
+    .authors sup {
+      font-size: 0.75rem;
+      margin-left: 0.05rem;
+      color: var(--muted2);
+    }
+
+    .authors sup.corr { color: var(--accent); }
+
+    .venue-line {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    [data-theme="dark"] .venue-line {
+      color: var(--muted);
+    }
+
+    .teaser {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+
+    [data-theme="dark"] .teaser {
+      color: var(--muted2);
+    }
+
+    .expand-block {
+      display: none;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      background: var(--chip);
+      border: 1px solid var(--border);
+    }
+
+    .expand-block.is-open { display: block; }
+
+    .expand-block pre {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--primary);
+    }
+
+    .copy-row {
+      margin-top: 0.5rem;
+    }
+
+    .copy-row button {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.25rem;
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .copy-row button:hover { background: var(--nav-hover); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: none;
+      background: var(--chip);
+      color: var(--primary);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    [data-theme="dark"] .btn-chip {
+      color: var(--muted);
+    }
+
+    .btn-chip:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    a.btn-chip:hover { color: #fff; }
+
+    .btn-chip svg { width: 0.75rem; height: 0.75rem; }
+
+    footer.site-footer {
+      border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+      background: color-mix(in srgb, var(--chip) 40%, var(--background));
+      margin-top: 2rem;
+    }
+
+    [data-theme="dark"] footer.site-footer {
+      background: color-mix(in srgb, #0f172a 85%, #1e293b);
+    }
+
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted2);
+    }
+
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-inner a {
+      color: var(--muted2);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .footer-inner a:hover { color: var(--accent); }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted2);
+      font-size: 0.9375rem;
+    }
+
+    .empty-state.is-hidden { display: none; }
   </style>
 </head>
 <body>
-  <p><a href="index.html">← Back to home</a></p>
-  <h1>Publications</h1>
-  <p>
-    Placeholder for the full publication list (the PRISM demo uses a dedicated
-    <a href="https://prism-demo.pages.dev/publications/">/publications</a> page). Replace this with your complete bibliography, filters, or BibTeX exports.
-  </p>
+  <header class="nav-wrap">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Yiling Ma</a>
+      <div class="nav-desktop" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a class="is-active" href="publications.html">Publications</a>
+        <a href="index.html#teaching">Teaching</a>
+        <a href="index.html#awards">Awards</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#cv">CV</a>
+      </div>
+      <div class="nav-tools">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Theme">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+        </button>
+        <button type="button" class="nav-mobile-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="sr-only">Open main menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-panel" id="mobile-nav" hidden>
+      <a href="index.html#about">About</a>
+      <a href="publications.html">Publications</a>
+      <a href="index.html#teaching">Teaching</a>
+      <a href="index.html#awards">Awards</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cv">CV</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="pub-page">
+      <h1>Publications</h1>
+      <p class="lede">A collection of my research work.</p>
+
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          <input type="search" id="pub-search" placeholder="Search publications..." autocomplete="off" aria-label="Search publications">
+        </div>
+        <button type="button" class="btn-filter" id="filter-toggle" aria-expanded="false" aria-controls="filter-panel">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"/></svg>
+          Filters
+        </button>
+      </div>
+
+      <div class="filter-panel" id="filter-panel" hidden>
+        <fieldset>
+          <legend>Year</legend>
+          <div class="filter-opts">
+            <label><input type="checkbox" name="year" value="2025"> 2025</label>
+            <label><input type="checkbox" name="year" value="2024"> 2024</label>
+            <label><input type="checkbox" name="year" value="2023"> 2023</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Venue</legend>
+          <div class="filter-opts">
+            <label><input type="checkbox" name="venue" value="journal"> Journal</label>
+            <label><input type="checkbox" name="venue" value="conference"> Conference</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="empty-state is-hidden" id="pub-empty">No publications match your filters.</p>
+
+      <div class="pub-list" id="pub-list">
+        <!-- <article class="pub-sheet" data-year="2025" data-venue="journal" data-search="algorithmic complexity tensor network contractions many-body localization Yiling Ma ada lovelace physical review e">
+          <div class="pub-sheet-inner">
+            <div class="pub-thumb">
+              <figure>
+                <img src="https://prism-demo.pages.dev/papers/example.png" alt="" width="192" height="144" loading="lazy">
+              </figure>
+            </div>
+            <div class="pub-body">
+              <h3>Algorithmic Complexity of Tensor Network Contractions in Many-Body Localization</h3>
+              <p class="authors"><span class="hl">Yiling Ma</span>, <span>Ada Lovelace<sup>&dagger;</sup></span></p>
+              <p class="venue-line">Physical Review E <span style="font-weight:400;color:var(--muted2)">2025</span></p>
+              <p class="teaser">Complexity analysis of tensor network contractions in MBL systems, identifying a complexity phase transition and proposing an adaptive algorithm.</p>
+              <div class="actions">
+                <a class="btn-chip" href="https://doi.org/10.1103/PhysRevE.112.092101" target="_blank" rel="noopener noreferrer">DOI</a>
+                <a class="btn-chip" href="https://github.com/xyjoey/Tensor_Network_Complexity_MBL" target="_blank" rel="noopener noreferrer">Code</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-1" data-full="Simulating the dynamics of many-body localized (MBL) systems poses a significant challenge due to the logarithmic growth of entanglement entropy. This paper analyzes the algorithmic complexity of contracting tensor networks when applied to MBL Hamiltonians, and proposes an adaptive bond-dimension algorithm.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button>
+              </div>
+              <div class="expand-block abstract-block" id="abs-1" aria-live="polite"></div>
+              <div class="expand-block bib-block" id="bib-1" aria-live="polite">
+                <pre id="bib-pre-1">@article{liu2025algorithmic,
+  title = {Algorithmic Complexity of Tensor Network Contractions in Many-Body Localization},
+  author = {Yiling Ma and Ada Lovelace},
+  journal = {Physical Review E},
+  year = {2025},
+  doi = {10.1103/PhysRevE.112.092101}
+}</pre>
+                <div class="copy-row"><button type="button" class="js-copy" data-target="bib-pre-1">Copy</button></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub-sheet" data-year="2025" data-venue="journal" data-search="existence uniqueness non-linear stochastic partial differential equations jane doe Yiling Ma richard feynman annals probability">
+          <div class="pub-sheet-inner">
+            <div class="pub-body" style="width:100%">
+              <h3>On the Existence and Uniqueness of Solutions to Non-Linear Stochastic Partial Differential Equations</h3>
+              <p class="authors"><span class="u">Jane Doe</span>, <span class="hl u">Yiling Ma</span>, <span>Richard Feynman</span></p>
+              <p class="venue-line">Annals of Probability <span style="font-weight:400;color:var(--muted2)">2025</span></p>
+              <p class="teaser">Mathematical proof of existence and uniqueness for non-linear SPDEs with multiplicative L&eacute;vy noise, extending theory to non-Lipschitz coefficients.</p>
+              <div class="actions">
+                <a class="btn-chip" href="https://doi.org/10.1214/00-AOP0000" target="_blank" rel="noopener noreferrer">DOI</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-2" data-full="We establish existence and uniqueness of mild solutions for a class of non-linear SPDEs driven by multiplicative L&eacute;vy noise, under relaxed Lipschitz assumptions on the coefficients.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button>
+              </div>
+              <div class="expand-block abstract-block" id="abs-2"></div>
+              <div class="expand-block bib-block" id="bib-2">
+                <pre id="bib-pre-2">@article{doe2025spde,
+  title = {On the Existence and Uniqueness of Solutions to Non-Linear Stochastic Partial Differential Equations},
+  author = {Jane Doe and Yiling Ma and Richard Feynman},
+  journal = {Annals of Probability},
+  year = {2025}
+}</pre>
+                <div class="copy-row"><button type="button" class="js-copy" data-target="bib-pre-2">Copy</button></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub-sheet" data-year="2024" data-venue="conference" data-search="constructive proof generalized riemann hypothesis function fields finite constants john smith Yiling Ma alan turing icm">
+          <div class="pub-sheet-inner">
+            <div class="pub-thumb">
+              <figure>
+                <img src="https://prism-demo.pages.dev/papers/example.png" alt="" width="192" height="144" loading="lazy">
+              </figure>
+            </div>
+            <div class="pub-body">
+              <h3>A Constructive Proof of the Generalized Riemann Hypothesis for Function Fields over Finite Constants</h3>
+              <p class="authors"><span class="u">John Smith</span>, <span class="hl u">Yiling Ma</span><sup class="corr">&dagger;</sup>, <span>Alan Turing</span></p>
+              <p class="venue-line">Proceedings of the 2024 International Congress of Mathematicians (ICM) <span style="font-weight:400;color:var(--muted2)">2024</span></p>
+              <p class="teaser">A constructive proof demonstrating the validity of the Generalized Riemann Hypothesis for function fields using spectral interpretation of the Frobenius automorphism.</p>
+              <div class="actions">
+                <a class="btn-chip" href="https://doi.org/10.4171/ICM2024/102" target="_blank" rel="noopener noreferrer">DOI</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-3" data-full="We give a constructive proof of the GRH for function fields by relating zeros of the zeta function to eigenvalues of a Frobenius operator on a suitable cohomology theory.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button>
+              </div>
+              <div class="expand-block abstract-block" id="abs-3"></div>
+              <div class="expand-block bib-block" id="bib-3">
+                <pre id="bib-pre-3">@inproceedings{smith2024grh,
+  title = {A Constructive Proof of the Generalized Riemann Hypothesis for Function Fields over Finite Constants},
+  author = {John Smith and Yiling Ma and Alan Turing},
+  booktitle = {Proceedings of ICM 2024},
+  year = {2024},
+  doi = {10.4171/ICM2024/102}
+}</pre>
+                <div class="copy-row"><button type="button" class="js-copy" data-target="bib-pre-3">Copy</button></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub-sheet" data-year="2024" data-venue="journal" data-search="numerical stability high-order runge-kutta quantum dynamics Yiling Ma sarah oconnor journal computational physics">
+          <div class="pub-sheet-inner">
+            <div class="pub-body" style="width:100%">
+              <h3>Numerical Stability Analysis of High-Order Runge-Kutta Methods in Quantum Dynamics</h3>
+              <p class="authors"><span class="hl">Yiling Ma</span>, <span>Sarah O'Connor<sup>&dagger;</sup></span></p>
+              <p class="venue-line">Journal of Computational Physics <span style="font-weight:400;color:var(--muted2)">2024</span></p>
+              <p class="teaser">A rigorous analysis of numerical stability boundaries for high-order Runge-Kutta integrators in the context of time-dependent quantum mechanics.</p>
+              <div class="actions">
+                <a class="btn-chip" href="https://doi.org/10.1016/j.jcp.2023.110832" target="_blank" rel="noopener noreferrer">DOI</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-4" data-full="We derive stability boundaries for high-order Runge-Kutta integrators applied to the time-dependent Schr&ouml;dinger equation and validate them on benchmark quantum simulations.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button>
+              </div>
+              <div class="expand-block abstract-block" id="abs-4"></div>
+              <div class="expand-block bib-block" id="bib-4">
+                <pre id="bib-pre-4">@article{liu2024stability,
+  title = {Numerical Stability Analysis of High-Order Runge-Kutta Methods in Quantum Dynamics},
+  author = {Yiling Ma and Sarah O'Connor},
+  journal = {Journal of Computational Physics},
+  volume = {450},
+  pages = {110832},
+  year = {2024},
+  doi = {10.1016/j.jcp.2023.110832}
+}</pre>
+                <div class="copy-row"><button type="button" class="js-copy" data-target="bib-pre-4">Copy</button></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub-sheet" data-year="2023" data-venue="conference" data-search="monte carlo phase transitions 2d ising non-euclidean lattices charlie brown Yiling Ma iccp">
+          <div class="pub-sheet-inner">
+            <div class="pub-thumb">
+              <figure>
+                <img src="https://prism-demo.pages.dev/papers/example.png" alt="" width="192" height="144" loading="lazy">
+              </figure>
+            </div>
+            <div class="pub-body">
+              <h3>Monte Carlo Simulations of Phase Transitions in 2D Ising Models on Non-Euclidean Lattices</h3>
+              <p class="authors"><span>Charlie Brown</span>, <span class="hl">Yiling Ma</span><sup class="corr">&dagger;</sup></p>
+              <p class="venue-line">2023 International Conference on Computational Physics (ICCP) <span style="font-weight:400;color:var(--muted2)">2023</span></p>
+              <p class="teaser">Monte Carlo study revealing mean-field-like phase transitions and critical exponent deviations for Ising models on hyperbolic non-Euclidean lattices.</p>
+              <div class="actions">
+                <a class="btn-chip" href="https://doi.org/10.1103/ICCP.2023.0045" target="_blank" rel="noopener noreferrer">DOI</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-5" data-full="We use Monte Carlo methods on hyperbolic lattices to probe universality and critical exponents of the 2D Ising model beyond Euclidean geometry.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button>
+              </div>
+              <div class="expand-block abstract-block" id="abs-5"></div>
+              <div class="expand-block bib-block" id="bib-5">
+                <pre id="bib-pre-5">@inproceedings{brown2023monte,
+  title = {Monte Carlo Simulations of Phase Transitions in 2D Ising Models on Non-Euclidean Lattices},
+  author = {Charlie Brown and Yiling Ma},
+  booktitle = {ICCP 2023},
+  year = {2023},
+  doi = {10.1103/ICCP.2023.0045}
+}</pre>
+                <div class="copy-row"><button type="button" class="js-copy" data-target="bib-pre-5">Copy</button></div>
+              </div>
+            </div>
+          </div>
+        </article> -->
+
+
+        <article class="pub-sheet" data-year="2026" data-venue="conference" data-search="a new method for eating breakfast yiling ma imoc">
+          <div class="pub-sheet-inner">
+            <div class="pub-thumb">
+              <figure>
+                <img src="https://prism-demo.pages.dev/papers/example.png" alt="" width="192" height="144" loading="lazy">
+              </figure>
+            </div>
+            <div class="pub-body">
+              <h3>A New Method for Eating Breakfast</h3>
+              <p class="authors"><span>Charlie Brown</span>, <span class="hl">Yiling Ma</span><sup class="corr">&dagger;</sup></p>
+              <p class="venue-line">2026 International My Own Conference (IMOC) <span style="font-weight:400;color:var(--muted2)">2023</span></p>
+              <p class="teaser">If you want to eat breakfast, you can use this method.</p>
+              <div class="actions">
+                <!-- <a class="btn-chip" href="https://doi.org/10.1103/ICCP.2023.0045" target="_blank" rel="noopener noreferrer">DOI</a>
+                <button type="button" class="btn-chip js-toggle-abs" data-abs="abs-5" data-full="We use Monte Carlo methods on hyperbolic lattices to probe universality and critical exponents of the 2D Ising model beyond Euclidean geometry.">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+                  Abstract
+                </button>
+                <button type="button" class="btn-chip js-toggle-bib" data-bib="bib-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                  BibTeX
+                </button> -->
+              </div>
+              <div class="expand-block abstract-block" id="abs-5"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>Last updated: April 10, 2026</p>
+      <p>
+        <a href="https://github.com/xyjoey/PRISM" target="_blank" rel="noopener noreferrer">Built with PRISM</a>
+        <span aria-hidden="true" style="margin-left:0.35rem">&#x1F680;</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var key = 'prism-clone-theme';
+      function applyTheme(t) {
+        root.setAttribute('data-theme', t);
+        var sun = document.getElementById('icon-sun');
+        var moon = document.getElementById('icon-moon');
+        if (sun && moon) {
+          sun.style.display = t === 'dark' ? 'none' : 'block';
+          moon.style.display = t === 'dark' ? 'block' : 'none';
+        }
+        try { localStorage.setItem(key, t); } catch (e) {}
+      }
+      var saved = null;
+      try { saved = localStorage.getItem(key); } catch (e) {}
+      if (saved === 'light' || saved === 'dark') applyTheme(saved);
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+      else applyTheme('light');
+
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+
+      var menu = document.getElementById('mobile-nav');
+      var toggle = document.getElementById('menu-toggle');
+      toggle.addEventListener('click', function () {
+        var open = menu.classList.toggle('is-open');
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('is-open');
+          menu.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      var filterToggle = document.getElementById('filter-toggle');
+      var filterPanel = document.getElementById('filter-panel');
+      filterToggle.addEventListener('click', function () {
+        var open = filterPanel.classList.toggle('is-open');
+        filterPanel.hidden = !open;
+        filterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      function normalize(s) {
+        return (s || '').toLowerCase().replace(/\s+/g, ' ').trim();
+      }
+
+      function applyFilters() {
+        var q = normalize(document.getElementById('pub-search').value);
+        var years = [];
+        document.querySelectorAll('input[name="year"]:checked').forEach(function (c) { years.push(c.value); });
+        var venues = [];
+        document.querySelectorAll('input[name="venue"]:checked').forEach(function (c) { venues.push(c.value); });
+
+        var cards = document.querySelectorAll('.pub-sheet');
+        var n = 0;
+        cards.forEach(function (card) {
+          var hay = normalize(card.getAttribute('data-search'));
+          var okSearch = !q || hay.indexOf(q) !== -1;
+          var y = card.getAttribute('data-year');
+          var okYear = years.length === 0 || years.indexOf(y) !== -1;
+          var v = card.getAttribute('data-venue');
+          var okVenue = venues.length === 0 || venues.indexOf(v) !== -1;
+          var show = okSearch && okYear && okVenue;
+          card.classList.toggle('is-hidden', !show);
+          if (show) n++;
+        });
+        document.getElementById('pub-empty').classList.toggle('is-hidden', n !== 0);
+      }
+
+      document.getElementById('pub-search').addEventListener('input', applyFilters);
+      document.querySelectorAll('#filter-panel input').forEach(function (inp) {
+        inp.addEventListener('change', applyFilters);
+      });
+
+      document.querySelectorAll('.js-toggle-abs').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-abs');
+          var el = document.getElementById(id);
+          var full = btn.getAttribute('data-full');
+          var open = el.classList.toggle('is-open');
+          el.textContent = open ? full : '';
+        });
+      });
+
+      document.querySelectorAll('.js-toggle-bib').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-bib');
+          document.getElementById(id).classList.toggle('is-open');
+        });
+      });
+
+      document.querySelectorAll('.js-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-target');
+          var text = document.getElementById(id).textContent;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              var t = btn.textContent;
+              btn.textContent = 'Copied';
+              setTimeout(function () { btn.textContent = t; }, 1500);
+            });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
